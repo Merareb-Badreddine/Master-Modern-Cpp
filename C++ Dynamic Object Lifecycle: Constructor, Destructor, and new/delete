@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+
+class MyClass {
+public:
+    MyClass(const std::string& name) : name_(name) {
+        std::cout << "Constructor called for " << name_ << '\n';
+    }
+
+    ~MyClass() {
+        std::cout << "Destructor called for " << name_ << '\n';
+    }
+
+    void greet() const {
+        std::cout << "Hello, " << name_ << "!\n";
+    }
+
+private:
+    std::string name_;
+};
+
+int main() {
+    // Allocate memory for a single object  The Constructor is called, passing "Alice" as the argument.
+    MyClass* obj = new MyClass("Alice");
+    obj->greet();
+
+    // Deallocate memory  The Destructor (~MyClass) is called first, then the memory is freed.
+    delete obj;
+
+    return 0;
+}
