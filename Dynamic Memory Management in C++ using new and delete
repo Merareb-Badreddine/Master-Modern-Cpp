@@ -1,0 +1,18 @@
+#include <iostream>
+
+int main() {
+    // Allocate memory for a single integer
+    int* ptr = new int;
+
+    // Assign a value
+    *ptr = 42;
+
+    // Print the value
+    std::cout << "Value: " << *ptr << '\n';
+
+    // Deallocate memory
+    delete ptr;
+    ptr = nullptr;
+
+    return 0;
+}
