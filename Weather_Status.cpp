@@ -1,20 +1,23 @@
+
 #include <iostream>
 
 // نستخدم هذا السطر حتى لا نضطر لكتابة std:: قبل كل cout, string, endl ...
 using namespace std;
 
-enum Weather {
+typedef enum {
     SUNNY,
     RAINY,
     CLOUDY,
     SNOWY
-};
+} Weather;
 
-struct City {
+
+typedef struct {
     string name;
     int temperature;
     Weather weather;
-};
+} City;
+
 
 string getWeatherName(Weather w) {
     switch (w) {
@@ -29,7 +32,7 @@ string getWeatherName(Weather w) {
 int main() {
     City c1 = {"London", 15, CLOUDY};
 
-    cout << "City: " << c1.name << endl;       // لا نكتب std::cout بسبب using namespace std
+    cout << "City: " << c1.name << endl;        // لا نكتب std::cout بسبب using namespace std
     cout << "Temperature: " << c1.temperature << " C" << endl;
     cout << "Weather: " << getWeatherName(c1.weather) << endl;
 
