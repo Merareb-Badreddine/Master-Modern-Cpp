@@ -10,7 +10,7 @@ int main() {
     // Allocate memory for 5 integers
     int* arr = (int*)malloc(5 * sizeof(int));
     if (arr == nullptr) {
-        std::cerr << "Memory allocation failed\n";
+        std::cerr << "Memory allocation failed\n";  // std::cerr is the standard error stream,
         return 1;
     }
 
