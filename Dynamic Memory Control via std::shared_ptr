@@ -1,0 +1,53 @@
+#include <iostream>
+#include <memory> // Essential header for smart pointers (std::shared_ptr)
+
+class MyClass {
+public:
+   
+    MyClass(int value) : value(value) {
+        std::cout << "Constructor called for value: " << value << '\n';
+    }
+
+    
+    ~MyClass() {
+        std::cout << "Destructor called for value: " << value << '\n';
+    }
+
+    void display() const {
+        std::cout << "Value: " << value << '\n';
+    }
+
+private:
+    int value;
+};
+
+int main() {
+    // 1. Creation: Use std::make_shared for safe and efficient allocation.
+    // The reference count is initialized to 1.
+    std::shared_ptr<MyClass> ptr1 = std::make_shared<MyClass>(10); 
+    
+    { // Start of an inner scope
+        // 2. Sharing: Copying ptr1 creates another shared_ptr (ptr2).
+        // The object's reference count is incremented to 2.
+        std::shared_ptr<MyClass> ptr2 = ptr1; 
+        
+        std::cout << "Inside inner scope:\n";
+        ptr2->display();
+        
+        // Output will show '2' because both ptr1 and ptr2 own the object.
+        std::cout << "Use count: " << ptr1.use_count() << '\n'; 
+        
+    } // End of inner scope: ptr2 is destroyed (goes out of scope).
+      // The reference count decreases from 2 to 1. 
+      // The object is NOT deleted because ptr1 still owns it.
+
+    std::cout << "Back in main:\n";
+    // Output will show '1' because only ptr1 remains.
+    std::cout << "Use count: " << ptr1.use_count() << '\n';
+    ptr1->display();
+
+    // 3. Destruction: main ends, ptr1 is destroyed (goes out of scope).
+    // The reference count decreases from 1 to 0. 
+    // Since the count is zero, the object is automatically deleted, and the destructor is called.
+    return 0; 
+}
