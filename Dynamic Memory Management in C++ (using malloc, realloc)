@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cstdlib> // For malloc, calloc, realloc, free
+
+int main() {
+
+     // Allocate memory for 5 integers using malloc (memory is NOT initialized)
+     // You can use calloc instead of malloc to initialize the memory with zeros:
+     // int* arr = (int*)calloc(5, sizeof(int)); // Allocates memory and fills it with zeros
+
+    // Allocate memory for 5 integers
+    int* arr = (int*)malloc(5 * sizeof(int));
+    if (arr == nullptr) {
+        std::cerr << "Memory allocation failed\n";
+        return 1;
+    }
+
+    / Initialize the first 5 elements manually (not needed if you used calloc)
+    for (int i = 0; i < 5; ++i) {
+        arr[i] = i + 1;
+    }
+
+    // Resize the memory to hold 10 integers
+    arr = (int*)realloc(arr, 10 * sizeof(int));
+    if (arr == nullptr) {
+        std::cerr << "Memory reallocation failed\n";
+        return 1;
+    }
+
+     // Initialize the new elements (indices 5 to 9)
+    for (int i = 5; i < 10; ++i) {
+        arr[i] = i + 1;
+    }
+
+    // Print all 10 elements
+    for (int i = 0; i < 10; ++i) {
+        std::cout << "arr[" << i << "] = " << arr[i] << '\n';
+    }
+
+    // Free the allocated memory
+    free(arr);
+    return 0;
+}
