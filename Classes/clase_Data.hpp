@@ -1,3 +1,6 @@
+#ifndef DATA_H
+#define DATA_H
+
 class Data
 {
 private:
@@ -14,7 +17,9 @@ public:
     void SetVariableX(int VariableX);
     void SetVariableY(int VariableY);
 
-    // Read-only functions (do not modify object)
+   // This function does not modify the object; it only returns for this const
     int getVariableX() const;
     int getVariableY() const;
 };
+
+#endif // DATA_H
