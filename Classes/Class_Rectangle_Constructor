@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+private:
+    double length;
+    double width;
+
+public:
+    // Constructor using initialization list
+    Rectangle(double len, double wid) : length(len), width(wid) {
+        
+    }
+
+
+    double area() {
+        return length * width;
+    }
+
+    
+    double perimeter() {
+        return 2 * (length + width);
+    }
+
+    // Function to display values
+    void display() {
+        cout << "Length: " << length << ", Width: " << width << endl;
+        cout << "Area: " << area() << endl;
+        cout << "Perimeter: " << perimeter() << endl;
+    }
+};
+
+int main() {
+    Rectangle rect(10.0, 5.0); // Object created
+    rect.display();
+
+    return 0;
+}
