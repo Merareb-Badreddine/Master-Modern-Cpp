@@ -1,4 +1,4 @@
-#include "class Poly.hpp" 
+#include "class_Poly.hpp" 
 
   poly :: Poly() {} 
   poly :: Poly(int order , float coeffs []) : order(order), coeffs(coeffs) {} 
